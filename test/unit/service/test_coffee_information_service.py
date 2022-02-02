@@ -91,30 +91,24 @@ def describe_get_drink_by_title():
     def test_should_return_coffee_drink(
         coffee_information_repository_mock, coffee_information, coffee_drink
     ):
-
         coffee_information_repository_mock.get_coffee_information.return_value = (
             coffee_information
         )
-
         coffee_information_service = CoffeeInformationService(
             coffee_information_repository_mock
         )
 
-        # This test will fail if String argument contains uppercase
         result = coffee_information_service.get_drink_by_title("black")
 
         expect(result).to(be_a(type(coffee_drink)))
-
         expect(result).to(equal(coffee_drink))
 
     def test_should_return_not_found_exception(
         coffee_information_repository_mock, coffee_information
     ):
-
         coffee_information_repository_mock.get_coffee_information.return_value = (
             coffee_information
         )
-
         coffee_information_service = CoffeeInformationService(
             coffee_information_repository_mock
         )
@@ -122,7 +116,6 @@ def describe_get_drink_by_title():
         expect(lambda: coffee_information_service.get_drink_by_title("Gatorade")).to(
             raise_error(NotFoundException)
         )
-
 
 @pytest.fixture
 def coffee_information_repository_mock(mocker):
