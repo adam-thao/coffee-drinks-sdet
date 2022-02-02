@@ -1,7 +1,7 @@
 # pylint: disable=redefined-outer-name,missing-module-docstring,missing-function-docstring,unused-variable,implicit-str-concat,import-error
 
-import pytest
 import uuid
+import pytest
 from expects import equal, expect, be_a, raise_error
 from service.coffee_information_service import CoffeeInformationService
 from domain.model.coffee_information import CoffeeInformation
@@ -82,9 +82,9 @@ def describe_get_drink_by_id():
         )
 
         non_existent_uuid = uuid.uuid4()
-        expect(lambda: coffee_information_service.get_drink_by_id(non_existent_uuid)).to(
-            raise_error(NotFoundException)
-        )
+        expect(
+            lambda: coffee_information_service.get_drink_by_id(non_existent_uuid)
+        ).to(raise_error(NotFoundException))
 
 
 def describe_get_drink_by_title():
@@ -116,6 +116,7 @@ def describe_get_drink_by_title():
         expect(lambda: coffee_information_service.get_drink_by_title("Gatorade")).to(
             raise_error(NotFoundException)
         )
+
 
 @pytest.fixture
 def coffee_information_repository_mock(mocker):
