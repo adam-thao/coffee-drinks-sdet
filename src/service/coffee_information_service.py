@@ -77,11 +77,12 @@ class CoffeeInformationService:
         return coffee_drink
 
     def __get_drink_by_value(self, value: str):
+        normalized_value = value.casefold().strip()
         for coffee_drink in self._coffee_information.coffee_drinks:
-            if coffee_drink.id.casefold() == value:
+            if coffee_drink.id.casefold().strip() == normalized_value:
                 return coffee_drink
 
-            if coffee_drink.title.casefold() == value:
+            if coffee_drink.title.casefold().strip() == normalized_value:
                 return coffee_drink
 
         return None  # pragma: no cover
